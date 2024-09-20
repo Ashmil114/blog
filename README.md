@@ -1,6 +1,6 @@
 # Blog Project
 
-This is a blog application built with Django, TailwindCSS, and DaisyUI. It allows users to create, read, update, and delete blog posts.
+This is a blog application built with Django, TailwindCSS, DaisyUI, and jQuery. It allows users to create, read, update, and delete blog posts.
 
 ## Features
 
@@ -13,6 +13,7 @@ This is a blog application built with Django, TailwindCSS, and DaisyUI. It allow
 - **Django**: Backend framework
 - **TailwindCSS**: Utility-first CSS framework
 - **DaisyUI**: TailwindCSS component library
+- **jQuery**: JavaScript library
 
 ## Installation
 
