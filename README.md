@@ -19,8 +19,8 @@ This is a blog application built with Django, TailwindCSS, and DaisyUI. It allow
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/ashmil114/blog.git
-    cd blog
+    git clone https://github.com/Ashmil114/blog.git
+    cd core
     ```
 
 2. **Create and activate a virtual environment:**
