@@ -1,0 +1,46 @@
+{% extends 'auth_base.html' %}
+{% load custom_filters %}
+{% block title %}
+    Edit Post
+{% endblock title %}
+{% block content %}
+    <div class="flex justify-center items-center  w-full flex-col">
+        <h2 class="text-blue-500 text-2xl">Edit Post</h2>
+        <form method="post" enctype="multipart/form-data" class="flex flex-col ">
+            {% csrf_token %}
+            <div>
+                {% if form.email.errors %}<div>{{ form.email.errors }}</div>{% endif %}
+            </div>
+            <div class="flex gap-x-5">
+                <label class="form-control w-full ">
+                    <div class="label">
+                        <span class="label-text">Title</span>
+                    </div>
+                    {{ form.title|add_class:"input input-bordered w-full " }}
+                </label>
+                <label class="form-control w-full ">
+                    <div class="label">
+                        <span class="label-text">Description</span>
+                    </div>
+                    {{ form.description|add_class:"input input-bordered w-full  " }}
+                </label>
+            </div>
+            <label class="form-control w-full ">
+                <div class="my-5">{{ form.image|add_class:"file-input file-input-bordered w-full " }}</div>
+            </label>
+            <label class="form-control w-full ">
+                <div class="label">
+                    <span class="label-text">Category</span>
+                </div>
+                <div class="flex items-center gap-x-2">
+                    {{ form.category|add_class:"input input-bordered w-full" }}
+                    <a href=""
+                       class="btn  bg-green-500 hover:bg-green-600 font-black text-2xl text-white">+</a>
+                </div>
+            </label>
+            <button type="submit"
+                    class="btn  mt-4 bg-green-500 text-white hover:bg-green-600">Save</button>
+        </form>
+    </div>
+    <style></style>
+{% endblock content %}

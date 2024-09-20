@@ -1,0 +1,51 @@
+{% extends 'auth_base.html' %}
+{% load custom_filters %}
+{% block title %}
+    Posts
+{% endblock title %}
+{% block content %}
+    <div class="min-h-screen w-full">
+        <div class="flex justify-between items-center w-full pb-10">
+            <h1 class="text-3xl font-semibold ">Your Posts</h1>
+            <a href="{% url 'add_post' %}"
+               class="btn  bg-green-500 hover:bg-green-600 text-white py-2 px-5">Add New Post</a>
+        </div>
+        <div class="flex flex-col gap-y-10">
+            {% for post in posts %}
+                <div class=" flex justify-between">
+                    <div class="bg-base-100 flex gap-x-5">
+                        {% if post.image %}<img src="{{ post.image.url }}" alt="Album" width="150" />{% endif %}
+                        <div>
+                            <p class="btn btn-xs bg-blue-500 text-white my-2">{{ post.category }}</p>
+                            <a href="{% url 'post_detail' pk=post.id %}">
+                                <h1 class="text-xl font-semibold">{{ post.title|truncate_title }}</h1>
+                            </a>
+                            <div class="flex gap-x-5 mt-2">
+                                <p class="text-sm text-gray-400 font-medium">By {{ post.owner.name }}</p>
+                                <p class="text-sm text-gray-400 font-medium">{{ post.created }}</p>
+                                <p class="text-sm text-gray-400 font-medium">{{ post.no_of_views }} Views</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-x-5">
+                        <a href="{% url 'edit_post' pk=post.id %}"
+                           class="btn btn-sm bg-blue-600 text-white hover:bg-blue-700">Edit</a>
+                        <a href="{% url 'delete_post' pk=post.id %}"
+                           class="btn btn-sm bg-red-500 text-white hover:bg-red-600 delete-post">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('.delete-post').on('click', function(event) {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                if (confirm('Are you sure you want to delete this post?')) {
+                    window.location.href = href;
+                }
+            });
+        });
+    </script>
+{% endblock content %}

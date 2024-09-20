@@ -1,0 +1,3 @@
+https://dev.to/jazzdev/setting-up-tailwindcss-with-django-easy-guide-2o6j
+
+You can use this for tailwind css configuration with django

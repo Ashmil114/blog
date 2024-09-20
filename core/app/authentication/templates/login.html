@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+    <div class="flex justify-center items-center h-screen w-full flex-col">
+        <h2>Login</h2>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}<div>{{ message }}</div>{% endfor %}
+            </div>
+        {% endif %}
+        <form method="post" class="flex flex-col">
+            {% csrf_token %}
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Email</span>
+                </div>
+                <input type="email"
+                       name="email"
+                       class="input input-bordered w-full max-w-xs"
+                       required>
+                <br>
+            </label>
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Password</span>
+                </div>
+                <input type="password"
+                       name="password"
+                       class="input input-bordered w-full max-w-xs"
+                       required>
+                <br>
+            </label>
+            <button type="submit" class="btn">Login</button>
+            <a href="{% url 'register' %}" class="btn-link w-full text-center mt-5">Register</a>
+        </form>
+    </div>
+{% endblock content %}

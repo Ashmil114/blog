@@ -1,0 +1,77 @@
+{% extends 'auth_base.html' %}
+{% load custom_filters %}
+{% block title %}
+    Add New Post
+{% endblock title %}
+{% block content %}
+    <div class="flex justify-center items-center  w-full flex-col">
+        <h2 class="text-blue-500 text-2xl">Add New Post</h2>
+        <form method="post" enctype="multipart/form-data" class="flex flex-col">
+            {% csrf_token %}
+            <div>
+                {% if form.email.errors %}<div>{{ form.email.errors }}</div>{% endif %}
+            </div>
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Title</span>
+                </div>
+                {{ form.title|add_class:"input input-bordered w-full max-w-xs" }}
+            </label>
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Image</span>
+                </div>
+                {{ form.image|add_class:"file-input file-input-bordered w-full max-w-xs" }}
+            </label>
+            <label class="form-control w-full max-w-xs">
+                <div class="label">
+                    <span class="label-text">Description</span>
+                </div>
+                {{ form.description|add_class:"input input-bordered w-full max-w-xs" }}
+            </label>
+            <label class="form-control w-full max-w-xs ">
+                <div class="label">
+                    <span class="label-text">Category</span>
+                </div>
+                <div class="flex items-center gap-x-2">
+                    {{ form.category|add_class:"input input-bordered w-full max-w-xs" }}
+                    <div onclick="my_modal_2.showModal()"
+                         class="btn  bg-green-500 hover:bg-green-600 font-black text-2xl text-white add-category">
+                        +
+                    </div>
+                </div>
+            </label>
+            <button type="submit"
+                    class="btn  mt-4 bg-green-500 text-white hover:bg-green-600">Add</button>
+        </form>
+        <dialog id="my_modal_2" class="modal">
+            <div class="modal-box flex flex-col justify-center ">
+                <form method="get" action="{% url 'add_category' %}">
+                    <div class="label">
+                        <span class="label-text">Title</span>
+                    </div>
+                    {{ cate_form.title|add_class:"input input-bordered w-full " }}
+                    <button type="submit"
+                            class="btn  mt-4 bg-green-500 text-white hover:bg-green-600">Add</button>
+                </form>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
+    </div>
+    <!-- <script>
+        $(document).ready(function(event) {
+            $('.add-category').click(function(event) {
+                event.preventDefault();
+                $('.category-model').removeClass('hidden');
+                $('.category-model').addClass('flex');
+            });
+            $('.close-category').click(function(event) {
+                event.preventDefault();
+                $('.category-model').removeClass('flex');
+                $('.category-model').addClass('hidden');
+            });
+        })
+    </script> -->
+{% endblock content %}

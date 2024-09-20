@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+  <div class="flex justify-center items-center h-screen w-full flex-col">
+    <h2 class="text-blue-500 text-2xl">Register</h2>
+    <form method="post" class="flex flex-col">
+      {% csrf_token %}
+      <div>
+        {% if form.email.errors %}<div>{{ form.email.errors }}</div>{% endif %}
+      </div>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Email</span>
+        </div>
+        {{ form.email|add_class:"input input-bordered w-full max-w-xs" }}
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Password</span>
+        </div>
+        {{ form.password1|add_class:"input input-bordered w-full max-w-xs" }}
+      </label>
+      <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Confarm password</span>
+        </div>
+        {{ form.password2|add_class:"input input-bordered w-full max-w-xs" }}
+      </label>
+      <button type="submit" class="btn  mt-4">Register</button>
+    </form>
+    <a href="{% url 'login' %}" class="btn-link w-full text-center mt-5">login</a>
+  </div>
+{% endblock content %}

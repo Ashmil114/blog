@@ -1,0 +1,25 @@
+# Python
+*.pyc
+__pycache__/
+
+# Environment
+.env
+venv/
+env/
+ENV/
+
+# Node
+node_modules/
+
+# Django
+*.log
+*.pot
+*.py[cod]
+*.sqlite3
+db.sqlite3
+
+# VS Code
+.vscode/
+
+
+

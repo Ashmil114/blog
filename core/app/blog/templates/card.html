@@ -1,0 +1,17 @@
+{% load custom_filters %}
+<div>
+    <div class="bg-base-100 flex gap-x-5">
+        {% if post.image %}<img src="{{ post.image.url }}" alt="Album" width="150" />{% endif %}
+        <div>
+            <p class="btn btn-xs bg-blue-500 text-white my-2">{{ post.category }}</p>
+            <a href="{% url 'post_detail' pk=post.id %}">
+                <h1 class="text-xl font-semibold">{{ post.title|truncate_title }}</h1>
+            </a>
+            <div class="flex gap-x-5 mt-2">
+                <p class="text-sm text-gray-400 font-medium">By {{ post.owner.name }}</p>
+                <p class="text-sm text-gray-400 font-medium">{{ post.created }}</p>
+                <p class="text-sm text-gray-400 font-medium">{{ post.no_of_views }} Views</p>
+            </div>
+        </div>
+    </div>
+</div>

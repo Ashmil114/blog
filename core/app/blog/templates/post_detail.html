@@ -1,0 +1,25 @@
+{% extends 'auth_base.html' %}
+{% block title %}
+    {{ post.title }}
+{% endblock title %}
+{% block content %}
+    <div class="  bg-base-100  ">
+        <figure>
+            {% if post.image %}
+                <img src="{{ post.image.url }}"
+                     alt="Album"
+                     class="object-cover w-full h-[65vh]" />
+            {% endif %}
+        </figure>
+        <div class="mt-4">
+            <h1 class="text-xl font-semibold">{{ post.title }}</h1>
+            <div class="flex gap-x-5 mt-2">
+                <p class="text-sm text-gray-400 font-medium">By {{ post.owner.name }}</p>
+                <p class="text-sm text-gray-400 font-medium">{{ post.created }}</p>
+                <p class="text-sm text-gray-400 font-medium">{{ post.no_of_views }} Views</p>
+            </div>
+        </div>
+        <p class="btn btn-xs bg-blue-500 text-white my-2">{{ post.category }}</p>
+        <div class="mb-10">{{ post.description }}</div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends 'auth_base.html' %}
+{% load custom_filters %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+    <div class="lg:flex gap-x-5">
+        <div class="lg:w-[50%]">
+            {% for post in posts|slice:":1" %}
+                <div class="  bg-base-100  ">
+                    <figure>
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}"
+                                 alt="Album"
+                                 class="object-cover w-full h-[65vh]" />
+                        {% endif %}
+                    </figure>
+                    <div class="mt-4">
+                        <a href="{% url 'post_detail' pk=post.id %}">
+                            <h1 class="text-xl font-semibold">{{ post.title|truncate_title }}</h1>
+                        </a>
+                        <div class="flex gap-x-5 mt-2">
+                            <p class="text-sm text-gray-400 font-medium">By {{ post.owner.name }}</p>
+                            <p class="text-sm text-gray-400 font-medium">{{ post.created }}</p>
+                            <p class="text-sm text-gray-400 font-medium">{{ post.no_of_views }} Views</p>
+                        </div>
+                    </div>
+                    <p class="btn btn-xs bg-blue-500 text-white my-2">{{ post.category }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="lg:w-[50%] max-sm:mt-10">
+            <div class="mb-5 flex justify-between items-center ">
+                <h1 class=" text-xl font-semibold">Recent post</h1>
+                <a href="" class="text-sm btn-link text-black uppercase">All Recent post</a>
+            </div>
+            <div class="flex flex-col gap-y-5">
+                {% for post in posts|slice:"1:4" %}
+                    {% include 'card.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
